@@ -16,20 +16,27 @@
         <div class="col">
             <div class="card">
                 <div class="card-header text-center">{{ __('P O R T F O L I O') }}</div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Slug</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Updated</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($projects as $project)
+                      <tr>
+                        <th scope="row">{{$project->title}}</th>
+                        <td>{{$project->slug}}</td>
+                        <td>{{$project->created_at}}</td>
+                        <td>{{$project->updated_at}}</td>
+                      </tr>
+                      @endforeach
 
-                <div class="card-body d-flex flex-wrap justify-content-center">
-
-                    @foreach ($projects as $project)
-
-                    <div class="card col-3 m-3 text-center">
-                        <img src="{{$project['image_url']}}" alt="">
-                        <a href="{{route('admin.projects.show', $project['id'])}}"><h5 class="m-3" style="text-transform: uppercase;">{{$project['title']}}</h5></a>
-                    </div>
-                    
-                    @endforeach
-
-                    
-                </div>
+                    </tbody>
+                  </table>
             </div>
         </div>
     </div>
