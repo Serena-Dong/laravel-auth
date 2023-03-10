@@ -33,7 +33,7 @@
         </div>
 
         <div class="col d-flex justify-content-end">
-            <a class="btn btn-primary mx-2" href="{{route('admin.projects.edit', $project->id)}}">Edit</a>
+            <a class="btn btn-warning text-white mx-2" href="{{route('admin.projects.edit', $project->id)}}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
             
             <form class="delete-form" action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" data-project-name="{{ $project->name }}">
                 @method('DELETE')
