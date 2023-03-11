@@ -28,7 +28,7 @@
                     <tbody>
                         @foreach ($projects as $project)
                       <tr>
-                        <th scope="row">{{$project->title}}</th>
+                        <th scope="row"><a style="text-transform: uppercase;" href="{{route('admin.projects.show', $project->id)}}">{{$project->title}}</a></th>
                         <td>{{$project->slug}}</td>
                         <td>{{$project->created_at}}</td>
                         <td>{{$project->updated_at}}</td>
