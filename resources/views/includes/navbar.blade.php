@@ -20,7 +20,10 @@
             <ul class="navbar-nav me-auto">
                 <li class="nav-item d-flex">
                     <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
+                    @auth ()
+                    <a class="nav-link" href="{{url('/admin') }}">{{ __('Dashboard') }}</a>
                     <a class="nav-link" href="{{url('/admin/projects') }}">{{ __('Projects') }}</a>
+                    @endauth
                 </ul>
             </li>
 
