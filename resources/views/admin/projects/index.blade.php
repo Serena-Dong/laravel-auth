@@ -9,7 +9,7 @@
             {{ __('My Projects') }}
         </h2>
         <div class="button">
-            <a class="btn btn-primary" href="{{route('admin.projects.create')}}">Add</a>
+            <a class="btn btn-primary" href="{{route('admin.projects.create')}}"><i class="fa-solid fa-plus"></i> Add</a>
         </div>
     </div>
     <div class="row justify-content-center">
