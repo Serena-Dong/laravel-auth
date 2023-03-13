@@ -48,10 +48,13 @@ class ProjectController extends Controller
 
         $data = $request->all();
         $new_project = new Project();
+
         if (Arr::exists($data, 'image')) {
             $img_url = Storage::put('projects', $data['image']);
-            $data['image'] = $img_url;
+            $data['image_url'] = $img_url;
         };
+        dd($data);
+
         $new_project->fill($data);
         $new_project->save();
 
