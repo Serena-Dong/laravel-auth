@@ -29,7 +29,7 @@
                         @foreach ($projects as $project)
                       <tr>
                         <th scope="row"><a style="text-transform: uppercase;" href="{{route('admin.projects.show', $project->id)}}">{{$project->title}}</a></th>
-                        <td>{{$project->slug}}</td>
+                        <td><input type="text" disabled value='{{Str::slug(old('title', $project->title), '-')}}'></td>
                         <td>{{$project->created_at}}</td>
                         <td>{{$project->updated_at}}</td>
                       </tr>
