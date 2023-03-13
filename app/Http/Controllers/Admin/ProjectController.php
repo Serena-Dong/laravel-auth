@@ -6,6 +6,10 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+
+
 
 
 class ProjectController extends Controller
@@ -38,13 +42,16 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|unique:projects',
             'project_url' => 'required|url',
-            'image_url' => 'url|nullable',
+            'image_url' => 'image|nullable',
             'description' => 'required|string'
         ]);
 
         $data = $request->all();
-
         $new_project = new Project();
+        if (Arr::exists($data, 'image')) {
+            $img_url = Storage::put('projects', $data['image']);
+            $data['image'] = $img_url;
+        };
         $new_project->fill($data);
         $new_project->save();
 
@@ -75,11 +82,15 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|unique:projects',
             'project_url' => 'required|url',
-            'image_url' => 'url|nullable',
+            'image_url' => 'image|nullable',
             'description' => 'required|string'
         ]);
 
         $data = $request->all();
+        if (Arr::exists($data, 'image')) {
+            $img_url = Storage::put('projects', $data['image']);
+            $data['image'] = $img_url;
+        };
         $project->fill($data);
         $project->save();
         return to_route('admin.projects.show', $project->id);

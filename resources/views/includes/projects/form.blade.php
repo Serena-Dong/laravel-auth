@@ -5,12 +5,12 @@
             
 
             @if ($project->exists)
-            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+            <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
 
                 <h3 class="text-center my-3">Edit the Info</h3>
             @else
-            <form action="{{ route('admin.projects.store', $project->id) }}" method="POST">
+            <form action="{{ route('admin.projects.store', $project->id) }}" method="POST" enctype="multipart/form-data">
                 <h3 class="text-center my-3">Add a new project</h3>
             @endif
                 
@@ -22,16 +22,23 @@
                         <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $project->title) }}">
                     </div>
                     <div class="mb-3 col-6 px-5">
+                        <label for="slug" class="form-label">Slug</label>
+                        <input type="text" class="form-control" id="slug" name="slug" disabled value='{{Str::slug(old('title', $project->title), '-')}}'>
+                    </div>
+                    <div class="mb-3 col-6 px-5">
                         <label for="project_url" class="form-label">Project URL</label>
                         <input type="url" class="form-control" id="project_url" name="project_url" value="{{ old('project_url', $project->project_url) }}">
                     </div>
                     <div class="mb-3 col-6 px-5">
-                        <label for="image_url" class="form-label">Image URL</label>
-                        <input type="url" class="form-control" id="image_url" name="image_url" value="{{ old('image_url', $project->image_url) }}">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="image_url" name="image_url" >
                     </div>
                     <div class="mb-3 col-6 px-5">
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $project->description) }}">
+                    </div>
+                    <div class="mb-3 col-6 px-5">
+                        <img src="" alt="{{asset('storage/'.$project->image_url)}}">
                     </div>
                 </div>
 
@@ -41,9 +48,21 @@
                 </div>
 
             </form>
+
+            @section('scripts')
+            <script>
+                // Get the elements
+                const titleInput = document.getElementbyId('title');
+                const slugInput = document.getElementbyId('slug');
             
+                titleInput.AddEventListener('blur', () => {
+                    slugInput.value = titleInput.value.toLowerCase();
+                });
+            </script>
+            @endsection
             
         </div>
     </div>
 
 </div>
+
