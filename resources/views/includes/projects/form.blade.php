@@ -37,7 +37,9 @@
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $project->description) }}">
                     </div>
-
+                    <div class="mb-3 col-6 px-5">
+                        <img src="{{asset('storage/projects'.$project->image_url)}}" alt="">
+                    </div>
                 </div>
 
                 <div class="buttons d-flex justify-content-between">

@@ -49,11 +49,10 @@ class ProjectController extends Controller
         $data = $request->all();
         $new_project = new Project();
 
-        if (Arr::exists($data, 'image')) {
-            $img_url = Storage::put('projects', $data['image']);
+        if (Arr::exists($data, 'image_url')) {
+            $img_url = Storage::put('projects', $data['image_url']);
             $data['image_url'] = $img_url;
         };
-        dd($data);
 
         $new_project->fill($data);
         $new_project->save();
@@ -90,10 +89,15 @@ class ProjectController extends Controller
         ]);
 
         $data = $request->all();
-        if (Arr::exists($data, 'image')) {
-            $img_url = Storage::put('projects', $data['image']);
-            $data['image'] = $img_url;
+
+        if (Arr::exists($data, 'image_url')) {
+            if ($project->image_url) Storage::delete($project->image_url);
+
+            $img_url = Storage::put('projects', $data['image_url']);
+            $data['image_url'] = $img_url;
         };
+
+
         $project->fill($data);
         $project->save();
         return to_route('admin.projects.show', $project->id);
