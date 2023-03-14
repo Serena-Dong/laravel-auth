@@ -21,6 +21,7 @@
                       <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Slug</th>
+                        <th scope="col">Visible</th>
                         <th scope="col">Created</th>
                         <th scope="col">Updated</th>
                       </tr>
@@ -30,6 +31,7 @@
                       <tr>
                         <th scope="row"><a style="text-transform: uppercase;" href="{{route('admin.projects.show', $project->id)}}">{{$project->title}}</a></th>
                         <td><input type="text" disabled value='{{Str::slug(old('title', $project->title), '-')}}'></td>
+                        <td>{{$project->is_published ? 'Yes' : 'No'}}</td>
                         <td>{{$project->created_at}}</td>
                         <td>{{$project->updated_at}}</td>
                       </tr>
