@@ -19,6 +19,7 @@
                         <div class="text">
                             <h2 class="mb-4" style="text-transform: uppercase;">{{$project['title']}}</h2>
                             <p>{{$project['description']}}</p>
+                            <p>Status: <strong class="{{$project->is_published ? 'text-success' : 'text-danger'}}"> {{$project->is_published ? 'Public' : 'Not Public'}}</strong></p>
                             <a class="text-primary" href="{{$project['project_url']}}">Go to Website</a>
                         </div>
                     </div>
