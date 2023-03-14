@@ -37,9 +37,7 @@
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $project->description) }}">
                     </div>
-                    <div class="mb-3 col-6 px-5">
-                        <img src="" alt="{{asset('storage/'.$project->image_url)}}">
-                    </div>
+
                 </div>
 
                 <div class="buttons d-flex justify-content-between">
@@ -52,11 +50,11 @@
             @section('scripts')
             <script>
                 // Get the elements
-                const titleInput = document.getElementbyId('title');
-                const slugInput = document.getElementbyId('slug');
+                const titleInput = document.getElementById('title');
+                const slugInput = document.getElementById('slug');
             
-                titleInput.AddEventListener('blur', () => {
-                    slugInput.value = titleInput.value.toLowerCase();
+                titleInput.addEventListener('blur', () => {
+                    slugInput.value = titleInput.value.toLowerCase().split(' ').join('-');
                 });
             </script>
             @endsection
