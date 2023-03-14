@@ -37,8 +37,10 @@
                         <label for="description" class="form-label">Description</label>
                         <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $project->description) }}">
                     </div>
+                    <div class="mb-3 col-3 px-5 d-flex justify-content-center">
+                        <img id="image_preview" class="img-fluid" src="{{ $project['image_url'] ? asset('storage/'.$project['image_url']) : 'https://marcolanci.it/utils/placeholder.jpg'}}" alt="">
+                    </div>
                     <div class="mb-3 col-6 px-5">
-                        <img src="{{asset('storage/projects'.$project->image_url)}}" alt="">
                     </div>
                 </div>
 
@@ -58,6 +60,14 @@
                 titleInput.addEventListener('blur', () => {
                     slugInput.value = titleInput.value.toLowerCase().split(' ').join('-');
                 });
+            </script>
+            <script>
+                const imgInput = document.getElementById('image_url');
+                const imgPreview = document.getElementById('image_preview');
+
+                imgInput.addEventListener('change', () => {
+
+                })
             </script>
             @endsection
             
