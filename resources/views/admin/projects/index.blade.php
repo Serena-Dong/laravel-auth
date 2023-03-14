@@ -37,6 +37,12 @@
 
                     </tbody>
                   </table>
+                  <hr>
+                  <div class="d-flex justify-content-center">
+                    @if ($projects->hasPages())
+                        {{$projects->links()}}
+                    @endif
+                  </div>
             </div>
         </div>
     </div>
