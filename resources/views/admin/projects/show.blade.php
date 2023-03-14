@@ -13,12 +13,13 @@
             <div class="card">
                 <div class="card-body d-flex flex-wrap justify-content-center">
                     <div class="col-4 p-3">
-                        <img src="{{$project['image_url']}}" alt="">
+                        <img class="w-50" src="{{asset('storage/'.$project->image_url)}}" alt="">
                     </div>
                     <div class="col-6">
                         <div class="text">
                             <h2 class="mb-4" style="text-transform: uppercase;">{{$project['title']}}</h2>
                             <p>{{$project['description']}}</p>
+                            <a class="text-primary" href="{{$project['project_url']}}">Go to Website</a>
                         </div>
                     </div>
                 </div>
